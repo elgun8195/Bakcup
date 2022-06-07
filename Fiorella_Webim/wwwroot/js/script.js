@@ -21,6 +21,23 @@ $(document).ready(function () {
 
     // HEADER
 
+    $(document).on("keyup", "#input-search", function () {
+        let inputVal = $(this).val().trim();
+        $("#axtaris li").slice(1).remove();
+        $.ajax({
+            method: "get",
+            url: "product/search?search=" + inputVal,
+            success: function (res) {
+                $("#axtaris").append(res);
+            }
+        })
+    })
+
+
+
+
+
+
     $(document).on('click', '#search', function () {
         $(this).next().toggle();
     })

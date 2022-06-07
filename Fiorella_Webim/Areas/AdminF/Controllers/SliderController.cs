@@ -54,27 +54,11 @@ namespace Fiorella_Webim.Areas.AdminF.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            Slider slider = await _context.Sliders.FindAsync(id);
-            if (slider == null)
-            {
-                return NotFound();
-            }
-            _context.Sliders.Remove(slider);
-            Helper.DeleteFile(_webhost, "img", slider.ImageUrl);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        
 
 
 
-
-        public async Task<IActionResult> Updatem(int? id)
+        public async Task<IActionResult> Update(int? id)
         {
             if (id == null)
             {
@@ -85,7 +69,7 @@ namespace Fiorella_Webim.Areas.AdminF.Controllers
             return View(dbslider);
         }
         [HttpPost]
-        public async Task<IActionResult> Updatem(int? id, Slider slider)
+        public async Task<IActionResult> Update(int? id, Slider slider)
         {
             if (!ModelState.IsValid)
             {
@@ -107,6 +91,25 @@ namespace Fiorella_Webim.Areas.AdminF.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Slider slider = await _context.Sliders.FindAsync(id);
+            if (slider == null)
+            {
+                return NotFound();
+            }
+            _context.Sliders.Remove(slider);
+            Helper.DeleteFile(_webhost, "img", slider.ImageUrl);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 
 }

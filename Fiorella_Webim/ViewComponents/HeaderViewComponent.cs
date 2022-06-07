@@ -1,6 +1,7 @@
 ﻿using Fiorella_Webim.DAL;
 using Fiorella_Webim.Models;
 using Fiorella_Webim.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace Fiorella_Webim.ViewComponents
     public class HeaderViewComponent : ViewComponent
     {
         private AppDbContext _context;
-
-        public HeaderViewComponent(AppDbContext context)
+        private UserManager<AppUser> _userManager;
+        
+        public HeaderViewComponent(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
@@ -37,6 +40,11 @@ namespace Fiorella_Webim.ViewComponents
             ViewBag.BasketLength = totalCount;
 
             Bio bio = _context.Bios.FirstOrDefault();
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser appUser=await _userManager.FindByNameAsync(User.Identity.Name);
+                ViewBag.Fullname=appUser.Fullname;
+            }
             return View(await Task.FromResult(bio));
         }
     }

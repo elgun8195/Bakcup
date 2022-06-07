@@ -18,17 +18,17 @@ namespace Fiorella_Webim.Areas.AdminF.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(int take=5,int pagesize=1)
+        public IActionResult Index(int take = 5, int pagesize = 1)
         {
-            List<Product> products = _context.Products.Include(p => p.Category).Skip((pagesize-1)*take).Take(take).ToList();
+            List<Product> products = _context.Products.Include(p => p.Category).Skip((pagesize - 1) * take).Take(take).ToList();
             Pagination<ProductVM> pagination = new Pagination<ProductVM>(
-            
+
                  ReturnPageCount(take),
                  pagesize,
                  MapProductToProductVM(products)
             );
-            
-            
+
+
             return View(pagination);
         }
         private List<ProductVM> MapProductToProductVM(List<Product> products)
@@ -46,14 +46,10 @@ namespace Fiorella_Webim.Areas.AdminF.Controllers
         }
 
 
-
-
-
-
         private int ReturnPageCount(int take)
         {
             int product = _context.Products.Count();
-            return (int)Math.Ceiling(((decimal)product /take));
+            return (int)Math.Ceiling(((decimal)product / take));
         }
     }
 }

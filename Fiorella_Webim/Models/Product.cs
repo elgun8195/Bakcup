@@ -1,4 +1,6 @@
-﻿namespace Fiorella_Webim.Models
+﻿using System.Collections.Generic;
+
+namespace Fiorella_Webim.Models
 {
     public class Product
     {
@@ -10,5 +12,7 @@
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public List<ProductColor> ProductColors { get; set; }
+
     }
 }

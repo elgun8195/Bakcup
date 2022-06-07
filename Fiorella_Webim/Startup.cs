@@ -1,6 +1,8 @@
 using Fiorella_Webim.DAL;
+using Fiorella_Webim.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,27 +13,40 @@ namespace Fiorella_Webim
 {
     public class Startup
     {
-        private IConfiguration _config;
+        private readonly IConfiguration _config;
         public Startup(IConfiguration config)
         {
             _config = config;
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            string connectinString = _config.GetConnectionString("DefaultConnection");
             services.AddControllersWithViews();
             services.AddDbContext<AppDbContext>(option =>
             {
-                option.UseSqlServer(_config["ConnectionStrings:DefaultConnection"]);
+                option.UseSqlServer(connectinString);
             });
             services.AddSession(opt =>
             {
                 opt.IdleTimeout = TimeSpan.FromMinutes(20);
             });
+            services.AddIdentity<AppUser, IdentityRole>(op =>
+            {
+                op.Password.RequiredLength = 6;
+                op.Password.RequireDigit = true;
+                op.Password.RequireLowercase = true;
+                op.Password.RequireNonAlphanumeric = true;
+                op.Password.RequireUppercase = true;
+                
+                op.User.RequireUniqueEmail = true;
+                op.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(20);
+                op.Lockout.MaxFailedAccessAttempts = 3;
+                op.Lockout.AllowedForNewUsers = true;//cehdtler falan olanda qiraga atmaq ucundur
+
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();//burda da hara
+                                                                                   //store oldugunu gosterir
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -41,17 +56,15 @@ namespace Fiorella_Webim
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSession();
-
+            app.UseAuthentication();//ve burda da autentifikasiya istifade edirik
+            app.UseAuthorization(); // eger authorize istifade edirsiznizse bunu yazmalisiniz
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     "areas",
                     "{area:exists}/{controller=dashboard}/{action=Index}/{id?}"
                   );
-                endpoints.MapControllerRoute(
-                    "default",
-                    "{controller=home}/{action=index}/{id?}"
-                    );
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

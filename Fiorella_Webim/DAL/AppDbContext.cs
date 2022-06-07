@@ -1,11 +1,12 @@
 ﻿using Fiorella_Webim.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fiorella_Webim.DAL
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
-        public AppDbContext(DbContextOptions<AppDbContext>options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
@@ -14,6 +15,7 @@ namespace Fiorella_Webim.DAL
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Bio> Bios { get; set; }
-
+        public DbSet<ProductColor> ProductColors { get; set; }
+        public DbSet<Color> Colors { get; set; }
     }
 }
