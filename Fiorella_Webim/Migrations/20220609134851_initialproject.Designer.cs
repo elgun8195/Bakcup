@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiorella_Webim.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220603090943_addProductandColor")]
-    partial class addProductandColor
+    [Migration("20220609134851_initialproject")]
+    partial class initialproject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

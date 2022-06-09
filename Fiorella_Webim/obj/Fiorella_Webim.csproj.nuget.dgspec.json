@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Elgun\\Desktop\\Fiorella_Webim\\Fiorella_Webim\\Fiorella_Webim.csproj": {}
+    "C:\\Users\\Acer\\Desktop\\Bakcup\\Fiorella_Webim\\Fiorella_Webim.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Elgun\\Desktop\\Fiorella_Webim\\Fiorella_Webim\\Fiorella_Webim.csproj": {
+    "C:\\Users\\Acer\\Desktop\\Bakcup\\Fiorella_Webim\\Fiorella_Webim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Elgun\\Desktop\\Fiorella_Webim\\Fiorella_Webim\\Fiorella_Webim.csproj",
+        "projectUniqueName": "C:\\Users\\Acer\\Desktop\\Bakcup\\Fiorella_Webim\\Fiorella_Webim.csproj",
         "projectName": "Fiorella_Webim",
-        "projectPath": "C:\\Users\\Elgun\\Desktop\\Fiorella_Webim\\Fiorella_Webim\\Fiorella_Webim.csproj",
-        "packagesPath": "C:\\Users\\Elgun\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Elgun\\Desktop\\Fiorella_Webim\\Fiorella_Webim\\obj\\",
+        "projectPath": "C:\\Users\\Acer\\Desktop\\Bakcup\\Fiorella_Webim\\Fiorella_Webim.csproj",
+        "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Acer\\Desktop\\Bakcup\\Fiorella_Webim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Elgun\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
